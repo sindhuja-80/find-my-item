@@ -10,14 +10,20 @@ import ProtectedRoute from "./components/ProtectedRute.jsx";
 import SubmitItem from "./pages/SubmitItem.jsx";
 import Profile from "./pages/Profile.jsx";
 import VerifyOTP from "./pages/VerifyOTP.jsx";
+import Navbar from "./components/Navbar.jsx";
+import Footer from "./components/Footer.jsx";
+
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes>
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<SignUp></SignUp>}></Route>
         <Route path="/verify-otp" element={<VerifyOTP></VerifyOTP>}></Route>
-        <Route path="/" element={<ProtectedRoute><ItemsList /></ProtectedRoute>} />
+        <Route path="/" element={<ItemsList />} />
         <Route path="/profile" element={<ProtectedRoute><Profile></Profile></ProtectedRoute>}></Route>
         <Route path="/submit-item" element={<ProtectedRoute><SubmitItem></SubmitItem></ProtectedRoute>}></Route>
         <Route path="/items/:id" element={<ProtectedRoute><ItemDetails /></ProtectedRoute>} />
@@ -25,7 +31,10 @@ const App = () => {
        <Route path="/chat/:userId" element={<ProtectedRoute><ChatPage></ChatPage></ProtectedRoute>}></Route>
         <Route path="/chat" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
         <Route path="/chat/:userId" element={<ProtectedRoute><ChatPage /></ProtectedRoute>} />
-       </Routes>
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 };

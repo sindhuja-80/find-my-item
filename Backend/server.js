@@ -15,7 +15,11 @@ import http from "http"
 const app=express()
 
 app.use(express.json())
-app.use(cors())
+const corsOptions = {
+  origin: process.env.FRONTEND_URL || "*",
+  credentials: true,
+}
+app.use(cors(corsOptions))
 
 connectDB()
 
@@ -33,7 +37,7 @@ const server =http.createServer(app)
 
 const io=new Server(server,{
   cors:{
-    origin:"https://findmyitem-frontend3.vercel.app/",
+    origin: process.env.FRONTEND_URL || "*",
     credentials:true,
     methods:["GET","POST"]
   }
