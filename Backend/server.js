@@ -25,17 +25,9 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 connectDB()
-
-// Serve frontend production build if present
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 const clientBuildPath = path.join(__dirname, '..', 'Frontend', 'dist')
-if (fs.existsSync(clientBuildPath)) {
-  app.use(express.static(clientBuildPath))
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(clientBuildPath, 'index.html'))
-  })
-}
 
 app.use("/api/users",userRouter)
 app.use("/api/items",itemRouter)
@@ -43,9 +35,22 @@ app.use("/uploads", express.static("uploads"))
 app.use("/api",matchRoute)
 app.use("/api/messages",messageRouter)
 
+// Basic API root
 app.get('/',(req,res)=>{
     res.send("api is working")
 })
+
+// Serve frontend production build if present (placed after API routes)
+if (fs.existsSync(clientBuildPath)) {
+  app.use(express.static(clientBuildPath))
+  app.use((req, res, next) => {
+    // Only serve index.html for non-API GET requests
+    if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.startsWith('/uploads')) {
+      return res.sendFile(path.join(clientBuildPath, 'index.html'))
+    }
+    next()
+  })
+}
 
 const server =http.createServer(app)
 
