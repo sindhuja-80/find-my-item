@@ -20,7 +20,7 @@ const Footer = () => {
             <FaGithub />
           </a>
           <a
-            href="https://www.linkedin.com/in/sindhuja-kurapati" 
+            href="https://www.linkedin.com/in/sindhuja-kalagotla" 
             target="_blank"
             rel="noopener noreferrer"
             className="text-gray-500 hover:text-blue-600 transition-colors transform hover:scale-110 duration-200"

@@ -46,11 +46,8 @@ const Signup = () => {
     try{
       const res=await axios.post(`${API_URL}/api/users/register`,{name,email,phone,password})
       if(res.data.success){
-        alert("OTP sent to your email")
-        navigate("/verify-otp",{
-           state:{email}
-        })
-       
+        alert("Registered successfully")
+        navigate("/login")
       }
     }catch(err){
       console.log(err)

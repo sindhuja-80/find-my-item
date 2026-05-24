@@ -9,7 +9,6 @@ import Login from "./pages/Login.jsx"
 import ProtectedRoute from "./components/ProtectedRute.jsx";
 import SubmitItem from "./pages/SubmitItem.jsx";
 import Profile from "./pages/Profile.jsx";
-import VerifyOTP from "./pages/VerifyOTP.jsx";
 import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 
@@ -22,7 +21,7 @@ const App = () => {
           <Routes>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/register" element={<SignUp></SignUp>}></Route>
-        <Route path="/verify-otp" element={<VerifyOTP></VerifyOTP>}></Route>
+        {/* OTP verification removed — route intentionally omitted */}
         <Route path="/" element={<ItemsList />} />
         <Route path="/profile" element={<ProtectedRoute><Profile></Profile></ProtectedRoute>}></Route>
         <Route path="/submit-item" element={<ProtectedRoute><SubmitItem></SubmitItem></ProtectedRoute>}></Route>

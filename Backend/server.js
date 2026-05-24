@@ -2,6 +2,9 @@ import dotenv from "dotenv"
 dotenv.config()
 
 import express from "express"
+import fs from "fs"
+import path from "path"
+import { fileURLToPath } from 'url'
 import cors from "cors"
 import connectDB from "./config/db.js"
 import userRouter from "./routes/userRoutes.js"
@@ -22,6 +25,17 @@ const corsOptions = {
 app.use(cors(corsOptions))
 
 connectDB()
+
+// Serve frontend production build if present
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+const clientBuildPath = path.join(__dirname, '..', 'Frontend', 'dist')
+if (fs.existsSync(clientBuildPath)) {
+  app.use(express.static(clientBuildPath))
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(clientBuildPath, 'index.html'))
+  })
+}
 
 app.use("/api/users",userRouter)
 app.use("/api/items",itemRouter)
