@@ -6,8 +6,8 @@ Users can **post lost items, post found items, and chat in real time** to return
 
 ##  Live Demo
 
-**Frontend:**  
-https://findmyitem-frontend.vercel.app
+**Frontend:** 
+https://frontend-six-delta-14.vercel.app/
 
 **Backend API:**  
 https://findmyitem-qt8b.onrender.com
@@ -29,7 +29,7 @@ There is **no centralized system** connecting people who **lost items** with tho
 
 ##  Features
 
-- **Authentication** – User signup, login, and email OTP verification  
+- **Authentication** – User signup, login
 - **Lost & Found Posts** – Report lost items or post found items with images  
 - **Smart Matching** – Automatically matches lost and found items using Fuse.js  
 - **Real-time Chat** – Direct communication between users via Socket.io  
